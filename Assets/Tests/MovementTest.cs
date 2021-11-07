@@ -62,5 +62,15 @@ namespace Tests
 
             Assert.Less(m_game.getPlayerModel().transform.position.y, m_initialYPos);
         }
+        [UnityTest]
+        public IEnumerator CameraFollow()
+        {
+            Vector3 m_initialPlayerPos = m_game.GetCameraFollow().transform.position;
+            m_game.getPlayerModel().MoveDown();
+            yield return new WaitForSeconds(5.0f);
+
+            Assert.AreEqual(m_game.GetCameraFollow().transform.position, m_initialPlayerPos);
+        }
+
     }
 }

@@ -9,6 +9,8 @@ public class Game : MonoBehaviour
 
     [SerializeField]
     private GameObject m_playerModel;
+    [SerializeField]
+    private GameObject m_camera;
 
     private static Game m_gameInstance;
 
@@ -30,5 +32,10 @@ public class Game : MonoBehaviour
     public Movement getPlayerModel()
     {
         return m_playerModel.GetComponent<Movement>();
+    }
+
+    public CameraFollow GetCameraFollow()
+    {
+        return m_camera.GetComponent<CameraFollow>();
     }
 }
