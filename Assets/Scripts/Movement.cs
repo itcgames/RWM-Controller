@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -30,6 +31,21 @@ public class Movement : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Add your combat scene here
+    /// </summary>
+    void CombatEncounter()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            if (Random.Range(1.0f, 100.0f) <= 1.1f)
+            {
+                Debug.Log("You have encountered an enemy!");
+                // add scene for battle
+            }
+        }
+    }
+
     public void MoveLeft()
     {
         transform.Translate(Vector2.left * Time.deltaTime * m_speed);
@@ -49,4 +65,10 @@ public class Movement : MonoBehaviour
     {
         transform.Translate(Vector2.down * Time.deltaTime * m_speed);
     }
+
+    public bool ForceCombatEncounter()
+    {
+        return true;
+    }
+
 }

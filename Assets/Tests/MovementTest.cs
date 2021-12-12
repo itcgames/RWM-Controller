@@ -20,6 +20,15 @@ namespace Tests
             m_game = gameGameObject.GetComponent<Game>();
         }
 
+        [TearDown]
+        public void Teardown()
+        {
+            if (m_game)
+            {
+                Object.Destroy(m_game);
+            }
+        }
+
         [UnityTest]
         public IEnumerator MoveLeft()
         {
