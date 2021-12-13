@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class Movement : MonoBehaviour
 {
     public float m_speed = 2;
+    [SerializeField]
+    private float m_triggerChance = 1.1f;
 
     // Update is called once per frame
     void Update()
@@ -29,6 +31,8 @@ public class Movement : MonoBehaviour
             MoveDown();
         }
 
+        CombatEncounter();
+
     }
 
     /// <summary>
@@ -36,13 +40,10 @@ public class Movement : MonoBehaviour
     /// </summary>
     void CombatEncounter()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (Random.Range(1.0f, 100.0f) <= m_triggerChance)
         {
-            if (Random.Range(1.0f, 100.0f) <= 1.1f)
-            {
-                Debug.Log("You have encountered an enemy!");
-                // add scene for battle
-            }
+            Debug.Log("You have encountered an enemy!");
+            // add scene for battle
         }
     }
 
