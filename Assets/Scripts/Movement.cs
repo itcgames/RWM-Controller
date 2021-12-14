@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     public float m_speed = 2;
     [SerializeField]
     private float m_triggerChance = 1.1f;
+    private bool m_isWalking; 
 
     // Update is called once per frame
     void Update()
@@ -48,6 +49,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     void CombatEncounter()
     {
+
         if (Random.Range(1.0f, 100.0f) <= m_triggerChance)
         {
             Debug.Log("You have encountered an enemy!");
