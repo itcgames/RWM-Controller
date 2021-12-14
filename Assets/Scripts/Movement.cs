@@ -12,27 +12,35 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool m_isMoved = false;
+
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             MoveLeft();
+            m_isMoved = true;
         }
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             MoveRight();
+            m_isMoved = true;
         }
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             MoveUp();
+            m_isMoved = true;
         }
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             MoveDown();
+            m_isMoved = true;
         }
 
-        CombatEncounter();
-
+        if (m_isMoved)
+        {
+            CombatEncounter();
+        }
     }
 
     /// <summary>
