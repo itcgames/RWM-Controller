@@ -8,37 +8,34 @@ public class Movement : MonoBehaviour
     public float m_speed = 2;
     [SerializeField]
     private float m_triggerChance = 1.1f;
-    private bool m_isWalking; 
+    private Vector2 m_input;
 
     // Update is called once per frame
     void Update()
     {
-        bool m_isMoved = false;
+        m_input.x = Input.GetAxisRaw("Horizontal");
+        m_input.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (m_input.x < 0)
         {
             MoveLeft();
-            m_isMoved = true;
         }
-
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if(m_input.x > 0)
         {
             MoveRight();
-            m_isMoved = true;
-        }
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            MoveUp();
-            m_isMoved = true;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        if(m_input.y < 0)
         {
             MoveDown();
-            m_isMoved = true;
         }
 
-        if (m_isMoved)
+        if(m_input.y > 0)
+        {
+            MoveUp();
+        }
+
+        if (m_input.SqrMagnitude() != 0)
         {
             CombatEncounter();
         }
