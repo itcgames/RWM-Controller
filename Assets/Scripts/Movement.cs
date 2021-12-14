@@ -8,31 +8,35 @@ public class Movement : MonoBehaviour
     public float m_speed = 2;
     [SerializeField]
     private float m_triggerChance = 1.1f;
+    private bool m_isWalking; 
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) 
+            || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)
+            || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)
+            || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)
+            )
         {
-            MoveLeft();
+            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+            {
+                MoveLeft();
+            }
+            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+            {
+                MoveRight();
+            }
+            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            {
+                MoveUp();
+            }
+            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            {
+                MoveDown();
+            }
+            CombatEncounter();
         }
-
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            MoveRight();
-        }
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            MoveUp();
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-        {
-            MoveDown();
-        }
-
-        CombatEncounter();
-
     }
 
     /// <summary>
@@ -40,6 +44,7 @@ public class Movement : MonoBehaviour
     /// </summary>
     void CombatEncounter()
     {
+
         if (Random.Range(1.0f, 100.0f) <= m_triggerChance)
         {
             Debug.Log("You have encountered an enemy!");
