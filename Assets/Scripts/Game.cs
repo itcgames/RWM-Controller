@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
@@ -37,5 +38,25 @@ public class Game : MonoBehaviour
     public CameraFollow GetCameraFollow()
     {
         return m_camera.GetComponent<CameraFollow>();
+    }
+
+    public int GetActiveIndex()
+    {
+        int m_sceneName = SceneManager.GetActiveScene().buildIndex;
+        return m_sceneName;
+    }
+
+    public bool CheckPlayer()
+    {
+        GameObject m_player;
+        if (m_player = GameObject.FindGameObjectWithTag("Player"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }
