@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Town.unity
-    guid: 21a4d622ee18e48dfacad6fa2bf6da3f
+    path: Assets/Scenes/Scene.unity
+    guid: c7e78459c487e47cab3ca85b11060e69
   - enabled: 1
     path: Assets/Scenes/Overworld.unity
     guid: 2d2fa5ccc23344bb393e20207b66c855
+  - enabled: 1
+    path: Assets/Scenes/Town.unity
+    guid: 21a4d622ee18e48dfacad6fa2bf6da3f
   m_configObjects: {}

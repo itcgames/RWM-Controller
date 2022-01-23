@@ -25,7 +25,6 @@ public class Overworld : MonoBehaviour
 
     public bool Faded()
     {
-
         m_animator.SetTrigger("Start");
         bool check = true;
         return check;

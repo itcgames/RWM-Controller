@@ -54,22 +54,26 @@ namespace Tests
         [UnityTest]
         public IEnumerator EnterTown()
         {
+            SceneManager.LoadScene(1);
+            yield return new WaitForSeconds(0.1f);
             m_instance = GameObject.Find("town");
             m_player = GameObject.Find("Player");
             m_animator = GameObject.Find("Fade").GetComponent<Animator>();
             m_instance.transform.position = m_player.transform.position;
             Debug.Log("Has entered Town");
+            SceneManager.LoadScene(2);
+            yield return new WaitForSeconds(0.1f);
             m_instance = GameObject.Find("overworld");
+            m_player = GameObject.Find("Player");
             m_instance.transform.position = m_player.transform.position;
-            yield return new WaitForSeconds(4.0f);
-            int m_sceneNum = m_game.GetActiveIndex();
-            Assert.AreEqual(1, m_sceneNum);
+            yield return new WaitForSeconds(1.0f);
+            Assert.AreEqual(2, m_game.GetActiveIndex());
         }
 
         [UnityTest]
         public IEnumerator EnterOverworld()
         {
-            SceneManager.LoadScene("Town", LoadSceneMode.Single);
+            SceneManager.LoadScene(2);
             yield return new WaitForSeconds(0.1f);
             m_instance = GameObject.Find("overworld");
             m_player = GameObject.Find("Player");
@@ -77,24 +81,30 @@ namespace Tests
             m_instance.transform.position = m_player.transform.position;
             yield return new WaitForSeconds(0.1f);
             Debug.Log("Has entered Overworld");
-            m_instance = GameObject.Find("town");
+            SceneManager.LoadScene(1);
             yield return new WaitForSeconds(0.1f);
+            m_instance = GameObject.Find("town");
+            m_player = GameObject.Find("Player");
             m_instance.transform.position = m_player.transform.position;
-            yield return new WaitForSeconds(4.0f);
-            int m_sceneNum = m_game.GetActiveIndex();
-            Assert.AreEqual(0, m_sceneNum);
+            yield return new WaitForSeconds(1.0f);
+            Assert.AreEqual(1, m_game.GetActiveIndex());
         }
 
         [UnityTest]
         public IEnumerator Transition()
         {
-            m_instance = GameObject.Find("Town");
+            SceneManager.LoadScene(1);
+            yield return new WaitForSeconds(1.0f);
+            m_instance = GameObject.Find("town");
+            m_player = GameObject.Find("Player");
+            m_instance.transform.position = m_player.transform.position;
+            Debug.Log("Has entered Town");
+            SceneManager.LoadScene(2);
+            yield return new WaitForSeconds(0.1f);
+            m_instance = GameObject.Find("overworld");
             m_player = GameObject.Find("Player");
             m_animator = GameObject.Find("Fade").GetComponent<Animator>();
-            m_instance.transform.position = m_player.transform.position;
             m_animator.GetBool("Start");
-            Debug.Log("Has entered Town");
-            m_instance = GameObject.Find("Overworld");
             m_instance.transform.position = m_player.transform.position;
             yield return new WaitForSeconds(1.0f);
             Assert.True(m_animator.GetBool("Start"));
